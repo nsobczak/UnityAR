@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-/**
- * \class FlashController FlashController.cs
- * \brief FlashController class is used to control flash light frequency.
- */
+
 public class FlashMat : MonoBehaviour
 {
     #region Parameters

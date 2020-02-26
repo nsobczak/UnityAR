@@ -1,9 +1,9 @@
 # UnityAR
 
-I used:
+This project uses:
 - unity 2018 lts
 - vuforia
-- 
+- weather api
 
 ## 1
 - add markers and basic 3D models
