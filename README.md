@@ -5,6 +5,7 @@ This project uses:
 - [vuforia](https://developer.vuforia.com/)
 - [weather api](https://openweathermap.org/api)
 - [nintendo 3ds ar cards](https://www.nintendo.com/3ds/ar-cards/), included in media folder
+- [SimpleJSON](http://wiki.unity3d.com/index.php/SimpleJSON)
 
 ## 1
 - add markers and basic 3D models
