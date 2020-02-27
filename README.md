@@ -1,6 +1,6 @@
 # UnityAR
 
-AR Android application: uses real weather data to interact with 3D assets. Assets are linked to markers: nintendo 3ds AR cards.
+AR Android application: use real weather data to interact with 3D assets. Assets are linked to markers: nintendo 3ds AR cards.
 
 Download apk [here](https://github.com/nsobczak/UnityAR/releases).
 
@@ -10,13 +10,13 @@ Download apk [here](https://github.com/nsobczak/UnityAR/releases).
 - click on object to move its marker relative location
 - click on object to delete it
 - use phone location to get current weather
-- virtually change irl location to change weather
+- virtually change real location to change weather
 - change virtual light for virtual assets to better to match daylight
 
 ## Requirements
 - Android 4.1 (API level 16).
 - Internet connection to retrieve weather data.
-- Geolocation is optional, you can manually add your localisation?.
+- Geolocation is optional, you can manually add your location.
 
 ## Project uses
 - [unity 2018 lts](https://unity3d.com/get-unity/download/archive)
