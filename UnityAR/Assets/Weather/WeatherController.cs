@@ -53,40 +53,8 @@ public class WeatherController : MonoBehaviour
     public int clouds;
 
     [SerializeField] private bool bUseManuallySetGPSCoordValues = true;
-    [SerializeField] private GPSCoordinate manualCoord = new GPSCoordinate(50.633f, 3.0586f);
+    [SerializeField] private GPSCoordinate manualCoord = new GPSCoordinate(59.335f, 18.063f);
     [SerializeField] private GPSCoordinate currentCoord;
-    #endregion
-
-    //____________________________________________________________________
-
-    #region singleton
-
-    private static WeatherController windControllerInstance = null;
-
-
-    /**
-    * \fn private WindController()
-    * \brief Change wind force value along with slider value.
-    */
-    private WeatherController()
-    {
-    }
-
-
-    /**
-    * \fn public static WindController GetWindControllerInstance()
-    * \brief access WindController instance
-    */
-    public static WeatherController GetWindControllerInstance
-    {
-        get
-        {
-            if (windControllerInstance == null)
-                windControllerInstance = new WeatherController();
-            return windControllerInstance;
-        }
-    }
-
     #endregion
 
     //____________________________________________________________________
@@ -103,7 +71,6 @@ public class WeatherController : MonoBehaviour
     public void SetManualCoordinates(float lat, float lon)
     {
         manualCoord = new GPSCoordinate(lat, lon);
-        StartCoroutine("RetrieveWeather");
     }
 
     #endregion
@@ -148,20 +115,26 @@ public class WeatherController : MonoBehaviour
                 // Access granted and location value could be retrieved
                 print("Location: " + Input.location.lastData.latitude + " " + Input.location.lastData.longitude + " " + Input.location.lastData.altitude + " " + Input.location.lastData.horizontalAccuracy + " " + Input.location.lastData.timestamp);
 
-                ////if original value has not yet been set save coordinates of player on app start
                 //if (bUseManualValues)
                 //{
                 //    manualCoord.Latitude = Input.location.lastData.latitude;
                 //    manualCoord.Longitude = Input.location.lastData.longitude;
                 //    bUseManualValues = false;
                 //}
-
-                //overwrite current lat and lon everytime
-                currentCoord.Latitude = Input.location.lastData.latitude;
-                currentCoord.Longitude = Input.location.lastData.longitude;
+                if (!bUseManuallySetGPSCoordValues)
+                {
+                    //overwrite current lat and lon everytime
+                    currentCoord.Latitude = Input.location.lastData.latitude;
+                    currentCoord.Longitude = Input.location.lastData.longitude;
+                }
             }
             Input.location.Stop();
         }
+    }
+
+    public void StartRetrieveWeatherCoroutine()
+    {
+        StartCoroutine("RetrieveWeather");
     }
 
     IEnumerator RetrieveWeather()
@@ -237,16 +210,4 @@ public class WeatherController : MonoBehaviour
     {
         yield return StartCoroutine("RetrieveWeather");
     }
-    //#region Buttons_functions
-
-    ///**
-    // * \fn public void UpdateWindForce()
-    // * \brief Change wind force value along with slider value.
-    // */
-    //public void UpdateWindForce()
-    //{
-    //    windForce = windSpeedSlider.value;
-    //}
-
-    //#endregion
 }

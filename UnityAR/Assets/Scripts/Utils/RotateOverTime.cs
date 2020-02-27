@@ -8,7 +8,7 @@ public class RotateOverTime : MonoBehaviour
     #region Parameters
     public string weatherControllerTag = "WeatherController";
     public float speed = 100.0f;
-    public float  windMultiplier = 5.0f;
+    public float  windMultiplier = 10.0f;
     [SerializeField] private Vector3 refAxe = new Vector3(0, 1, 0);
     #endregion
 
@@ -26,8 +26,6 @@ public class RotateOverTime : MonoBehaviour
 
     void Update()
     {
-        //TODO: access wind force via wind controller
-        //1tr/min = 6deg/sec
         transform.Rotate(refAxe * speed * Time.deltaTime);
     }
 }

@@ -4,10 +4,6 @@ using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 
-/**
- * \class ControlButtonPanel ControlButtonPanel.cs
- * \brief ControlButtonPanel class is used to show or hide left buttons panel.
- */
 public class ControlButtonPanel : MonoBehaviour
 {
     #region Parameters
@@ -23,10 +19,6 @@ public class ControlButtonPanel : MonoBehaviour
 
     #region Buttons_functions
 
-    /**
-     * \fn public void ShowPanelButtonClicked()
-     * \brief Show left bttons panel on clicked.
-     */
     public void ShowPanelButtonClicked()
     {
         ShowPanelController.SetActive(false);
@@ -34,11 +26,6 @@ public class ControlButtonPanel : MonoBehaviour
         PanelToControl.SetActive(true);
     }
 
-
-    /**
-     * \fn public void ShowPanelButtonClicked()
-     * \brief Hide left bttons panel on clicked.
-     */
     public void HidePanelButtonClicked()
     {
         ShowPanelController.SetActive(true);

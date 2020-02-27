@@ -28,7 +28,8 @@ public class WeatherHandler : MonoBehaviour
         float lat = float.Parse(latText.text.Replace(',', '.'), CultureInfo.InvariantCulture);
         float lon = float.Parse(lonText.text.Replace(',', '.'), CultureInfo.InvariantCulture);
         
-        _weatherController.SetManualCoordinates(lat, lon);      
+        _weatherController.SetManualCoordinates(lat, lon);
+        _weatherController.StartRetrieveWeatherCoroutine();
     }
 
     public void UsePhoneLocation()
@@ -38,6 +39,8 @@ public class WeatherHandler : MonoBehaviour
 
         latText.text = _weatherController.GetCurrentCoord().Latitude.ToString();
         lonText.text = _weatherController.GetCurrentCoord().Longitude.ToString();
+
+        _weatherController.StartRetrieveWeatherCoroutine();
     }
 
 }

@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-/**
- * \class LightController LightController.cs
- * \brief LightController class is used to handle day/night mode.
- */
 public class LightController : MonoBehaviour
 {
     #region Parameters
@@ -48,10 +44,6 @@ public class LightController : MonoBehaviour
 
     #region Buttons_functions
 
-    /**
-     * \fn public void SwitchModeButtonClicked()
-     * \brief Change wind turbines' light on button clicked.
-     */
     public void SwitchModeButtonClicked()
     {
         if (null != light)

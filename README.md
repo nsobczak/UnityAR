@@ -12,7 +12,8 @@ This project uses:
 
 The application uses irl weather to interact with 3D assets. Assets are linked to markers: nintendo 3ds ar cards.
 
-You can:
+Features:
+- wind speed changes rotation speed of 3D assets
 - add object to a marker, you choose the object and the marker
 - click on object to move its marker relative location
 - click on object to delete it
