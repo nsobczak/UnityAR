@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: 8e6af0fdeb11ac3408889e3442703e65
   - enabled: 0
-    path: Assets/Scenes/MainScene-noMenu.unity
+    path: Assets/Scenes/ARScene-noMenu.unity
     guid: 82811412f2d6b0044b2c879283f59bfe
   m_configObjects: {}

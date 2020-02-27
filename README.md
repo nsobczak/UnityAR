@@ -6,12 +6,16 @@ This project uses:
 - [weather api](https://openweathermap.org/api)
 - [nintendo 3ds ar cards](https://www.nintendo.com/3ds/ar-cards/), included in media folder
 - [SimpleJSON](http://wiki.unity3d.com/index.php/SimpleJSON)
+- [3D assets](https://sketchfab.com/trucverte)
 
-## 1
-- add markers and basic 3D models
+## Explanations
 
-## 2
-- add object
-- click on object to delete
-- menu: change rotation speed, change temperature unit
-- weather: display temperature on ui, and city, and time, add weather icon? (cloud, rain, sun, snow, moon)
+The application uses irl weather to interact with 3D assets. Assets are linked to markers: nintendo 3ds ar cards.
+
+You can:
+- add object to a marker, you choose the object and the marker
+- click on object to move its marker relative location
+- click on object to delete it
+- use phone location to get current weather
+- virtually change irl location to change weather
+- change virtual light for virtual assets to better to match daylight

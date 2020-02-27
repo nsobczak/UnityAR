@@ -36,9 +36,7 @@ public struct GPSCoordinate
 public class WeatherController : MonoBehaviour
 {
     #region Parameters
-
-    //[SerializeField] private Slider windSpeedSlider;
-    //private static float windForce;
+    public string imageTargetTag = "ImageTarget";
 
     //public string url = "http://api.openweathermap.org/data/2.5/weather?lat=50.633&lon=3.0586&APPID=814446a83d7a9fe9a23361c2a67eeea9";
     [SerializeField] private string APPID = "&APPID=814446a83d7a9fe9a23361c2a67eeea9";
@@ -54,7 +52,7 @@ public class WeatherController : MonoBehaviour
     public int windDeg;
     public int clouds;
 
-    public bool bUseManuallySetGPSCoordValues = true;
+    [SerializeField] private bool bUseManuallySetGPSCoordValues = true;
     [SerializeField] private GPSCoordinate manualCoord = new GPSCoordinate(50.633f, 3.0586f);
     [SerializeField] private GPSCoordinate currentCoord;
     #endregion
@@ -92,8 +90,27 @@ public class WeatherController : MonoBehaviour
     #endregion
 
     //____________________________________________________________________
+    #region Get/Set
+    public bool ManuallySetGPSCoordValues
+    {
+        get { return bUseManuallySetGPSCoordValues; }
+        set { bUseManuallySetGPSCoordValues = value; }
+    }
 
-    IEnumerator GetCoordinates()
+    public GPSCoordinate GetCurrentCoord() { return currentCoord; }
+
+    public GPSCoordinate GetManualCoordinates() { return manualCoord; }
+    public void SetManualCoordinates(float lat, float lon)
+    {
+        manualCoord = new GPSCoordinate(lat, lon);
+        StartCoroutine("RetrieveWeather");
+    }
+
+    #endregion
+
+    //____________________________________________________________________
+
+    public IEnumerator GetCoordinates()
     {
         //while true so this function keeps running once started.
         while (true)
@@ -147,9 +164,9 @@ public class WeatherController : MonoBehaviour
         }
     }
 
-
-    IEnumerator Start()
+    IEnumerator RetrieveWeather()
     {
+        Debug.Log("retrieving weather...");
         //get gps coord
         yield return StartCoroutine("GetCoordinates");
 
@@ -162,7 +179,7 @@ public class WeatherController : MonoBehaviour
 
         if (request.error == null || request.error == "")
         {
-            SetWeatherFromJson(request.downloadHandler.text);
+            SetWeatherFromJsonAndUpdateWorld(request.downloadHandler.text);
         }
         else
         {
@@ -173,7 +190,7 @@ public class WeatherController : MonoBehaviour
 
     void SetWeatherFromJson(string jsonString)
     {
-        Debug.Log("parsing " + jsonString);
+        //Debug.Log("parsing " + jsonString);
         var weatherJson = JSON.Parse(jsonString);
         city = weatherJson["name"].Value;
         weatherDescription = weatherJson["weather"][0]["description"].Value;
@@ -188,8 +205,38 @@ public class WeatherController : MonoBehaviour
         windDeg = weatherJson["wind"]["deg"].AsInt;
     }
 
+    void SetWeatherFromJsonAndUpdateWorld(string jsonString)
+    {
+        SetWeatherFromJson(jsonString);
+
+        GameObject[] imTargets = GameObject.FindGameObjectsWithTag(imageTargetTag);
+        for (int i = 0; i < imTargets.Length; i++)
+        {
+            RotateOverTime[] imTargetRot = imTargets[i].GetComponentsInChildren<RotateOverTime>();
+            for (int j = 0; j < imTargetRot.Length; j++)
+            {
+                if (imTargetRot[j])
+                    imTargetRot[j].speed = windSpeed * imTargetRot[j].windMultiplier;
+            }
+        }
+    }
+
+    public string GetInfoToString()
+    {
+        string res = "city: ".ToUpperInvariant() + city.ToString() + "\nweather: ".ToUpperInvariant() + weatherDescription.ToString()
+            + "\ntemp: ".ToUpperInvariant() + temp.ToString() + "\ntempMin: ".ToUpperInvariant() + tempMin.ToString()
+            + "\ntempMax: ".ToUpperInvariant() + tempMax.ToString() + "\npressure: ".ToUpperInvariant() + pressure.ToString()
+            + "\nhumidity: ".ToUpperInvariant() + humidity.ToString() + "\nwindSpeed: ".ToUpperInvariant() + windSpeed.ToString()
+            + "\nwindDeg: ".ToUpperInvariant() + windDeg.ToString() + "\nclouds: ".ToUpperInvariant() + clouds.ToString();
+        return res;
+    }
+
     //____________________________________________________________________
 
+    IEnumerator Start()
+    {
+        yield return StartCoroutine("RetrieveWeather");
+    }
     //#region Buttons_functions
 
     ///**
