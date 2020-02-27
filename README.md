@@ -1,6 +1,6 @@
 # UnityAR
 
-Android application that uses irl weather to interact with 3D assets. Assets are linked to markers: nintendo 3ds ar cards.
+AR Android application: uses real weather data to interact with 3D assets. Assets are linked to markers: nintendo 3ds AR cards.
 
 Download apk [here](https://github.com/nsobczak/UnityAR/releases).
 
