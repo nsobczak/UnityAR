@@ -56,14 +56,14 @@ public class ObjRaycast : MonoBehaviour
 
     private void InitializeObjPosValues(GameObject hitObject)
     {
-        objX = hitObject.transform.position.x;
-        objZ = hitObject.transform.position.y;
-        objY = hitObject.transform.position.z;
+        objX = hitObject.transform.localPosition.x;
+        objZ = hitObject.transform.localPosition.y;
+        objY = hitObject.transform.localPosition.z;
     }
 
     private void UpdateObjPos(GameObject hitObject)
     {
-        hitObject.transform.position = new Vector3(objX + XSlider.value,
+        hitObject.transform.localPosition = new Vector3(objX + XSlider.value,
             objZ + ZSlider.value, objY + YSlider.value);
     }
 
@@ -91,7 +91,7 @@ public class ObjRaycast : MonoBehaviour
     private void ObjHit(RaycastHit hit)
     {
         hitObj = hit.collider.gameObject;
-        Debug.Log("Hit clickable object");
+        //Debug.Log("Hit clickable object");
         ResetSliders();
         IsCalibratingObj = true;
 

@@ -78,7 +78,8 @@ public class AddObject : MonoBehaviour
             Transform trans = obj.GetComponent<Transform>();
             GameObject currentObj = Instantiate(obj, Vector3.zero, trans.rotation);
             currentObj.transform.SetParent(_images[_imageIdx].transform);
-            currentObj.transform.localPosition = _images[_imageIdx].transform.position + trans.position;
+            currentObj.transform.localPosition = trans.position;
+            currentObj.transform.localRotation = trans.rotation;
             currentObj.transform.localScale = trans.localScale;
             Debug.Log("pos = " + currentObj.transform.position.ToString() +
                 " | rotation = " + currentObj.transform.rotation.ToString() +
