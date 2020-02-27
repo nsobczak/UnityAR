@@ -31,3 +31,9 @@ Download apk [here](https://github.com/nsobczak/UnityAR/releases).
 - use wind direction to change rotation direction
 - use temperature data
 - use rain data to add some particle on screen
+
+## Images
+
+![WithLocation](Media/Gameplay_01.PNG)
+
+![SeveralCards](Media/Gameplay_02.PNG)
